@@ -1,22 +1,28 @@
-Usage
-App (sdkadmobads)
-The app demonstrates how to integrate and use the SDK to show ads and handle consent.
+# SDKAdMobAds Integration Guide
 
-1. Add SDK dependency to your app
+This app demonstrates how to integrate and use the SDK to show ads and handle user consent.
 
-    dependencies {
-        implementation(project(":sdkads"))
-    }
+---
+
+## 1. Add SDK Dependency to Your App
+
+Add the following SDK dependency to your `build.gradle` file:
+
+```groovy
+dependencies {
+    implementation(project(":sdkads"))
+}
    
 2. App Manifest File
 
     Code Details:
-   
+
+   <application
+   replace with your original App Id
     <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />
-    <!--        replace with your original App Id-->
-   
+   </application>
 
 3. Application Class
     Purpose: Initializes the AdMob SDK at the app level.

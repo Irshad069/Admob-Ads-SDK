@@ -12,11 +12,12 @@ Add the following SDK dependency to your `build.gradle` file:
 dependencies {
     implementation(project(":sdkads"))
 }
+```
 
- 
-2. Update App Manifest
+## 2. Update App Manifest
 Add the following metadata to your AndroidManifest.xml file under the <application> tag:
 
+```kotlin
 <application
     android:name=".MyApplication"
     ...>
@@ -25,32 +26,33 @@ Add the following metadata to your AndroidManifest.xml file under the <applicati
         android:name="com.google.android.gms.ads.APPLICATION_ID"
         android:value="ca-app-pub-3940256099942544~3347511713" />
 </application>
+```
 
-
-3. Application Class
+## 3. Application Class
 Create an Application class to initialize the AdMob SDK.
 
 File: MyApplication.kt
-
+```kotlin
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         AdSdkInitializer.initialize(application = this)
     }
 }
+```
 Ensure the Application class is declared in the AndroidManifest.xml:
-
+```kotlin
 <application
     android:name=".MyApplication"
     ...>
 </application>
+```
 
-
-4. MainActivity Setup
+## 4. MainActivity Setup
 In MainActivity, handle user consent and demonstrate SDK usage.
 
 File: MainActivity.kt
-
+```kotlin
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,13 +69,13 @@ class MainActivity : AppCompatActivity() {
         AdSdkInitializer.registerActivity(this)
     }
 }
+```
 
-
-5. Banner Ad Integration
+## 5. Banner Ad Integration
 Add a banner ad to your layout.
 
 Layout File: activity_main.xml
-
+```kotlin
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -83,25 +85,25 @@ Layout File: activity_main.xml
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </FrameLayout>
+```
 
-
-6. Interstitial Ad Integration
+## 6. Interstitial Ad Integration
 Display an interstitial ad on a button click.
 
 Key Code in MainActivity:
-
+```kotlin
 btnShowInterstitial.setOnClickListener {
     InterstitialHelper.showAd(this) {
         // Action to perform when ad is closed
     }
 }
+```
 
-
-7. Adaptive Banner Ad Integration
+## 7. Adaptive Banner Ad Integration
 Add an adaptive banner ad to your layout.
 
 Layout File: activity_main.xml
-
+```kotlin
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -111,13 +113,13 @@ Layout File: activity_main.xml
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </FrameLayout>
+```
 
-
-8. Reward Interstitial Ad Integration
+## 8. Reward Interstitial Ad Integration
 Display a reward interstitial ad on a button click.
 
 Key Code in MainActivity:
-
+```kotlin
 btnShowRewardInterstitial.setOnClickListener {
     RewardedInterstitialHelper.showAd(
         activity = this,
@@ -129,13 +131,13 @@ btnShowRewardInterstitial.setOnClickListener {
         }
     )
 }
+```
 
-
-9. Reward Ad Integration
+## 9. Reward Ad Integration
 Display a reward ad on a button click.
 
 Key Code in MainActivity:
-
+```kotlin
 btnShowReward.setOnClickListener {
     RewardedAdHelper.showAd(
         activity = this,
@@ -147,13 +149,13 @@ btnShowReward.setOnClickListener {
         }
     )
 }
+```
 
-
-10. Native Ad Integration
+## 10. Native Ad Integration
 Add a native ad to your layout.
 
 Layout File: activity_main.xml
-
+```kotlin
 <FrameLayout
     android:id="@+id/ad_frame"
     android:layout_width="match_parent"
@@ -165,14 +167,15 @@ Layout File: activity_main.xml
         android:layout_height="wrap_content"
         app:viewType="medium" />
 </FrameLayout>
+```
 
-
-11. App Open Ad Integration
+## 11. App Open Ad Integration
 Display an AppOpen ad when the activity resumes.
 
 Key Code in MainActivity:
-
+```kotlin
 override fun onResume() {
     super.onResume()
     AdSdkInitializer.registerActivity(this)
 }
+```

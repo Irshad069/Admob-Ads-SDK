@@ -12,6 +12,8 @@ Add the following SDK dependency to your `build.gradle` file:
 dependencies {
     implementation(project(":sdkads"))
 }
+And also in setting.gradle file Add this
+include(":sdkads")
 ```
 
 ## 2. Update App Manifest

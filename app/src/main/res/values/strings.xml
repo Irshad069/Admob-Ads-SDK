@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SDK Admob Ads</string>
+    <string name="show_banner_ad">Show Banner Ad</string>
+    <string name="show_adaptive_banner_ad">Show Adaptive Banner Ad</string>
+    <string name="show_app_open_ad">Show App Open Ad</string>
+    <string name="show_interstitial_ad">Show Interstitial Ad</string>
+    <string name="show_reward_ad">Show Reward Ad</string>
+    <string name="show_reward_interstitial_ad">Show Reward Interstitial Ad</string>
+    <string name="show_native_ad">Show Native Ad</string>
+
+    <string name="home">Home</string>
+    <string name="showing_banner_ad">Showing Banner Ad</string>
+    <string name="showing_adaptive_banner">Showing Adaptive Banner Ad</string>
+    <string name="showing_app_open_ad">Showing App Open Ad</string>
+    <string name="showing_interstitial_ad">Showing Interstitial Ad</string>
+    <string name="showing_reward_ad">Showing Reward Ad</string>
+    <string name="showing_reward_interstitial_ad">Showing Reward Interstitial Ad</string>
+    <string name="showing_native_ad">Showing Native Ad</string>
+
+</resources>

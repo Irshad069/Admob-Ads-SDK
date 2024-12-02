@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.HomeFragment">
+
+    <include
+        android:id="@+id/toolBar"
+        layout="@layout/component_toolbar" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnShowBanner"
+        style="@style/RoundedButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/show_banner_ad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolBar" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnShowAdaptiveBanner"
+        style="@style/RoundedButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_adaptive_banner_ad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnShowBanner" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnShowInterstitial"
+        style="@style/RoundedButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_interstitial_ad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnShowAdaptiveBanner" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnShowReward"
+        style="@style/RoundedButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_reward_ad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnShowInterstitial" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnShowRewardInterstitial"
+        style="@style/RoundedButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_reward_interstitial_ad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnShowReward" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnShowNative"
+        style="@style/RoundedButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_native_ad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnShowRewardInterstitial" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

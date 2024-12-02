@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.sdkadmobads.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_bannerFragment"
+            app:destination="@id/bannerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_interstitialFragment"
+            app:destination="@id/interstitialFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_adaptiveBannerFragment"
+            app:destination="@id/adaptiveBannerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_rewardInterstitialFragment"
+            app:destination="@id/rewardInterstitialFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_rewardFragment"
+            app:destination="@id/rewardFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_nativeFragment"
+            app:destination="@id/nativeFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/bannerFragment"
+        android:name="com.sdkadmobads.fragment.BannerFragment"
+        android:label="BannerFragment" />
+    <fragment
+        android:id="@+id/interstitialFragment"
+        android:name="com.sdkadmobads.fragment.InterstitialFragment"
+        android:label="fragment_interstitial"
+        tools:layout="@layout/fragment_interstitial" />
+    <fragment
+        android:id="@+id/adaptiveBannerFragment"
+        android:name="com.sdkadmobads.fragment.AdaptiveBannerFragment"
+        android:label="fragment_adaptive_banner"
+        tools:layout="@layout/fragment_adaptive_banner" />
+    <fragment
+        android:id="@+id/rewardInterstitialFragment"
+        android:name="com.sdkadmobads.fragment.RewardInterstitialFragment"
+        android:label="RewardInterstitialFragment" />
+    <fragment
+        android:id="@+id/rewardFragment"
+        android:name="com.sdkadmobads.fragment.RewardFragment"
+        android:label="fragment_reward"
+        tools:layout="@layout/fragment_reward" />
+    <fragment
+        android:id="@+id/nativeFragment"
+        android:name="com.sdkadmobads.fragment.NativeFragment"
+        android:label="fragment_native"
+        tools:layout="@layout/fragment_native" />
+
+</navigation>

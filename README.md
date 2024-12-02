@@ -39,6 +39,7 @@ class MyApplication : Application() {
         AdSdkInitializer.initialize(application = this)
     }
 }
+
 ```
 Ensure the Application class is declared in the AndroidManifest.xml:
 ```kotlin

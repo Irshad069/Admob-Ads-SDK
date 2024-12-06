@@ -78,7 +78,7 @@ class CustomNativeAdView @JvmOverloads constructor(
 
         val builder = AdLoader.Builder(context, AdsConfig.NATIVE_AD_ID)
 
-        builder.forNativeAd { ad ->
+        builder.forNativeAd { ad -> //Configures a callback to handle a successfully loaded ad
             // Destroys the previous ad (if any) and updates the reference.
             nativeAd?.destroy()
             nativeAd = ad
@@ -91,7 +91,7 @@ class CustomNativeAdView @JvmOverloads constructor(
             // Replaces any existing views with the new native ad view.
             removeAllViews()
             addView(nativeAdView)
-        }.withAdListener(object : AdListener() {
+        }.withAdListener(object : AdListener() { //Adds a listener for ad load failures (e.g., for logging or retrying).
             override fun onAdFailedToLoad(error: LoadAdError) {
                 super.onAdFailedToLoad(error)
                 // Optionally handle ad load failures (e.g., log errors or retry loading).
@@ -99,6 +99,7 @@ class CustomNativeAdView @JvmOverloads constructor(
         })
 
         // Configures video options for native ads.
+        // Configures native ads with video options (e.g., starting muted).
         val videoOptions = VideoOptions.Builder().setStartMuted(true).build()
         val adOptions = NativeAdOptions.Builder().setVideoOptions(videoOptions).build()
         builder.withNativeAdOptions(adOptions)

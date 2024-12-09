@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
 
         AdSdkInitializer.handleConsent(this) { consentGiven ->
             Log.d("TAG", "Consent given: $consentGiven")
-            Log.d("TAG", "Ads enabled: ${AdsConfig.areAdsEnabled}")
         }
 
     }

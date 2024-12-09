@@ -26,12 +26,6 @@ object AdsConfig {
     const val ADAPTIVE_BANNER_ID: String = BuildConfig.ADAPTIVE_BANNER_ID
 
     /**
-     * A boolean flag to enable or disable ads in the application.
-     * Defaults to `true` in release builds for production.
-     */
-    var areAdsEnabled: Boolean = false
-
-    /**
      * The AdMob ad unit ID for reward interstitial ads.
      * Defaults to test ad unit ID in debug builds.
      */

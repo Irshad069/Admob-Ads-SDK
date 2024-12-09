@@ -55,17 +55,11 @@ class CustomNativeAdView @JvmOverloads constructor(
     }
 
     /**
-     * Sets up the native ad by checking if ads are enabled and initializing the view.
-     * If ads are disabled, the view is hidden.
+     * Sets up the native ad by initializing the view.
      */
     private fun setupNativeAd() {
-        if (AdsConfig.areAdsEnabled) {
-            visibility = View.VISIBLE
-            removeAllViews()
-            loadNativeAd()
-        } else {
-            visibility = View.GONE
-        }
+        removeAllViews()
+        loadNativeAd()
     }
 
     /**
@@ -91,7 +85,8 @@ class CustomNativeAdView @JvmOverloads constructor(
             // Replaces any existing views with the new native ad view.
             removeAllViews()
             addView(nativeAdView)
-        }.withAdListener(object : AdListener() { //Adds a listener for ad load failures (e.g., for logging or retrying).
+        }.withAdListener(object :
+            AdListener() { //Adds a listener for ad load failures (e.g., for logging or retrying).
             override fun onAdFailedToLoad(error: LoadAdError) {
                 super.onAdFailedToLoad(error)
                 // Optionally handle ad load failures (e.g., log errors or retry loading).

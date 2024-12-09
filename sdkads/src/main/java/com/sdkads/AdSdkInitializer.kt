@@ -54,12 +54,10 @@ object AdSdkInitializer {
      *
      * **Steps performed:**
      * 1. Requests user consent using the `ConsentManager`.
-     * 2. Updates the `AdsConfig.areAdsEnabled` flag based on the consent result.
      * 3. Invokes the provided callback with the consent result.
      */
     fun handleConsent(activity: Activity, onConsentResult: (Boolean) -> Unit) {
         ConsentManager.requestConsent(activity) { consentGiven ->
-            AdsConfig.areAdsEnabled = consentGiven
             onConsentResult(consentGiven)
         }
     }

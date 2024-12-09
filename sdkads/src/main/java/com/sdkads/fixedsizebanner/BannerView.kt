@@ -30,16 +30,11 @@ class BannerView @JvmOverloads constructor(
     }
 
     /**
-     * Sets up the banner ad view. If ads are enabled, the view is made visible
-     * and the AdView is initialized. Otherwise, it is hidden.
+     * Sets up the banner ad view.
+     * and the AdView is initialized.
      */
     private fun setupBanner() {
-        if (AdsConfig.areAdsEnabled) {
-            visibility = View.VISIBLE
             initializeAdView()
-        } else {
-            visibility = View.GONE
-        }
     }
 
     /**
@@ -60,12 +55,10 @@ class BannerView @JvmOverloads constructor(
      */
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        if (AdsConfig.areAdsEnabled) {
             if (adView == null) {
                 initializeAdView() // Reinitialize AdView if it was removed.
             }
             adView?.loadAd(AdRequest.Builder().build())
-        }
     }
 
     /**

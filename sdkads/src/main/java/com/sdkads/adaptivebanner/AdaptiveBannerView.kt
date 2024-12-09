@@ -30,16 +30,11 @@ class AdaptiveBannerView @JvmOverloads constructor(
     }
 
     /**
-     * Sets up the adaptive banner view. If ads are enabled, the view is made visible
-     * and the AdView is initialized. Otherwise, it is hidden.
+     * Sets up the adaptive banner view.
+     * and the AdView is initialized.
      */
     private fun setUpAdaptiveBanner() {
-        if (AdsConfig.areAdsEnabled) {
-            visibility = View.VISIBLE
             initializeAdView()
-        } else {
-            visibility = View.GONE
-        }
     }
 
     /**

@@ -11,6 +11,11 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.sdkads.utils.AdsConfig
 
 /**
+ * Created by Irshad khan
+ * Date: 12/11/2024$
+ */
+
+/**
  * A helper object for managing Rewarded Ads using Google AdMob.
  * Handles ad loading, displaying, and lifecycle management.
  */

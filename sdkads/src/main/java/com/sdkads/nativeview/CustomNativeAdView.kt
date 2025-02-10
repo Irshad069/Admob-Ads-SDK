@@ -21,6 +21,11 @@ import com.sdkads.R
 import com.sdkads.utils.AdsConfig
 
 /**
+ * Created by Irshad khan
+ * Date: 12/11/2024$
+ */
+
+/**
  * A custom view for displaying Google AdMob Native Ads in an Android application.
  * This class provides functionality to load and display native ads dynamically
  * using AdMob's Native Ad features.

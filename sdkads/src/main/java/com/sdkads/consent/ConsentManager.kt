@@ -10,6 +10,11 @@ import com.google.android.ump.UserMessagingPlatform
 import com.sdkads.BuildConfig
 
 /**
+ * Created by Irshad khan
+ * Date: 12/11/2024$
+ */
+
+/**
  * Manages user consent for personalized ads using Google's User Messaging Platform (UMP).
  */
 object ConsentManager {

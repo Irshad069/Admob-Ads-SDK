@@ -3,6 +3,11 @@ package com.sdkads.utils
 import com.sdkads.BuildConfig
 
 /**
+ * Created by Irshad khan
+ * Date: 12/11/2024$
+ */
+
+/**
  * Configuration object for managing ad settings across the application.
  * Dynamically assigns AdMob ad unit IDs based on the build variant.
  */

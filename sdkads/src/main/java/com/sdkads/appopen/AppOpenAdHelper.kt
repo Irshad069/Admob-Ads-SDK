@@ -16,6 +16,11 @@ import com.sdkads.utils.AdsConfig
 import java.util.Date
 
 /**
+ * Created by Irshad khan
+ * Date: 12/11/2024$
+ */
+
+/**
  * AppOpenAdHelper is a utility class for managing App Open Ads in an Android application.
  *
  * This class handles:

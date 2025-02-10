@@ -9,6 +9,11 @@ import com.sdkads.consent.ConsentManager
 import com.sdkads.utils.AdsConfig
 
 /**
+ * Created by Irshad khan
+ * Date: 12/11/2024$
+ */
+
+/**
  * Utility object for initializing and managing the advertisement SDK and user consent.
  * Handles the initialization of Google Mobile Ads and manages user consent for showing ads.
  */

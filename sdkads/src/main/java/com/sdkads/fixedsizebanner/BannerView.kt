@@ -10,6 +10,11 @@ import com.google.android.gms.ads.AdView
 import com.sdkads.utils.AdsConfig
 
 /**
+ * Created by Irshad khan
+ * Date: 12/11/2024$
+ */
+
+/**
  * A custom view for displaying a fixed-size banner ad using Google AdMob.
  * This view always displays a banner of predefined size (`AdSize.BANNER`).
  *

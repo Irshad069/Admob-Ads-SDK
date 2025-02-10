@@ -10,6 +10,11 @@ import com.google.android.gms.ads.AdView
 import com.sdkads.utils.AdsConfig
 
 /**
+ * Created by Irshad khan
+ * Date: 12/11/2024$
+ */
+
+/**
  * A custom view that displays an adaptive banner ad using Google AdMob.
  * The ad adjusts its size dynamically to fit the screen width and orientation.
  *

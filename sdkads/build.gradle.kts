@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id("maven-publish")
+    id("com.vanniktech.maven.publish") version "0.28.0"
+    id("com.gradleup.nmcp") version "0.0.7"
 }
 
 android {
@@ -124,3 +127,28 @@ dependencies {
     // for lifecycle process
     implementation(libs.androidx.lifecycle.process)
 }
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "com.irshad069"
+            artifactId = "sdk_ads"
+            version = "1.0"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "sonatype"
+            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+
+            credentials {
+                username = System.getenv("SONATYPE_USERNAME") ?: "your-zVBmE8CQ"
+                password = System.getenv("SONATYPE_PASSWORD") ?: "your-2B6vgJiv1jw27SUqy6ZZeYsqWnFd3mEuHHAN0CVkz03t"
+            }
+        }
+    }
+}
+

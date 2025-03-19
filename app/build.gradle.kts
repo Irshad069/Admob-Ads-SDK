@@ -130,6 +130,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-//    implementation ("com.github.Irshad069:Admob-Ads-SDK:1.0.0")
+//    implementation ("com.github.Irshad069:Admob-Ads-SDK:1.0.1")
 
 }

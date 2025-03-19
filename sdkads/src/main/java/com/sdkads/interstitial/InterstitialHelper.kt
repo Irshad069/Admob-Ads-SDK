@@ -8,7 +8,7 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.sdkads.utils.AdsConfig
+import com.sdkads.core.AdsConfig
 
 /**
  * Created by Irshad khan

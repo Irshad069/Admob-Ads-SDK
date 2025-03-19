@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.sdkadmobads.databinding.ActivityMainBinding
 import com.sdkads.AdSdkInitializer
-import com.sdkads.utils.AdsConfig
 
 class MainActivity : AppCompatActivity() {
 

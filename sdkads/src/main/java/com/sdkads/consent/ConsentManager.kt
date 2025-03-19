@@ -7,7 +7,7 @@ import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.FormError
 import com.google.android.ump.UserMessagingPlatform
-import com.sdkads.BuildConfig
+import com.sdkads.core.AdsConfig
 
 /**
  * Created by Irshad khan
@@ -38,7 +38,7 @@ object ConsentManager {
         val consentInformation = UserMessagingPlatform.getConsentInformation(activity)
 
         // If consent is not required and it's not a debug build, return the consent result
-        if (!BuildConfig.DEBUG) {
+        if (!AdsConfig.IS_DEBUG) {
             if (consentInformation.isNotRequired) {
                 onConsentResult.invoke(consentInformation.canRequestAds())
                 return
@@ -48,7 +48,7 @@ object ConsentManager {
         // Set up debug settings for testing purposes
         val debugSettings = ConsentDebugSettings.Builder(activity)
             .apply {
-                if (BuildConfig.DEBUG) {
+                if (AdsConfig.IS_DEBUG) {
                     setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
                     addTestDeviceHashedId(TEST_DEVICE_HASHED_ID)
                 }

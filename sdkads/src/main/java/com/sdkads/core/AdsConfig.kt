@@ -1,6 +1,4 @@
-package com.sdkads.utils
-
-import com.sdkads.BuildConfig
+package com.sdkads.core
 
 /**
  * Created by Irshad khan
@@ -16,43 +14,48 @@ object AdsConfig {
      * The AdMob ad unit ID for fixed-size banner ads.
      * Defaults to test ad unit ID in debug builds.
      */
-    const val BANNER_ID: String = BuildConfig.BANNER_ID
+    var BANNER_ID: String = ""
 
     /**
      * The AdMob ad unit ID for interstitial ads.
      * Defaults to test ad unit ID in debug builds.
      */
-    const val INTERSTITIAL_AD_ID: String = BuildConfig.INTERSTITIAL_AD_ID
+    var INTERSTITIAL_AD_ID: String = ""
 
     /**
      * The AdMob ad unit ID for adaptive banner ads.
      * Defaults to test ad unit ID in debug builds.
      */
-    const val ADAPTIVE_BANNER_ID: String = BuildConfig.ADAPTIVE_BANNER_ID
+    var ADAPTIVE_BANNER_ID: String = ""
 
     /**
      * The AdMob ad unit ID for reward interstitial ads.
      * Defaults to test ad unit ID in debug builds.
      */
-    const val REWARD_INTERSTITIAL_AD_ID: String = BuildConfig.REWARD_INTERSTITIAL_AD_ID
+    var REWARD_INTERSTITIAL_AD_ID: String = ""
 
     /**
      * The AdMob ad unit ID for reward ads.
      * Defaults to test ad unit ID in debug builds.
      */
-    const val REWARDED_AD_ID: String = BuildConfig.REWARDED_AD_ID
+    var REWARDED_AD_ID: String = ""
 
     /**
      * The AdMob ad unit ID for native ads.
      * Defaults to test ad unit ID in debug builds.
      */
-    const val NATIVE_AD_ID: String = BuildConfig.NATIVE_AD_ID
+    var NATIVE_AD_ID: String = ""
 
     /**
      * The AdMob ad unit ID for native ads.
      * Defaults to test ad unit ID in debug builds.
      */
-    const val APP_OPEN_ID: String = BuildConfig.APP_OPEN_ID
+    var APP_OPEN_ID: String = ""
+
+    /**
+     * Is Debug check for showing consent
+     */
+    var IS_DEBUG:Boolean = false
 
     /**
      * default value for adType

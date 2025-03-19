@@ -6,7 +6,7 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.sdkads.appopen.AppOpenAdHelper
 import com.sdkads.consent.ConsentManager
-import com.sdkads.utils.AdsConfig
+import com.sdkads.core.AdsConfig
 
 /**
  * Created by Irshad khan
@@ -32,14 +32,31 @@ object AdSdkInitializer {
      * 2. Initializes the Mobile Ads SDK.
      */
     fun initialize(
-        application: Application
+        application: Application,
+        isDebug: Boolean,
+        testDeviceIds: List<String> = emptyList(),
+        bannerId: String = "",
+        appOpenAd: String = "",
+        interstitialAd: String = "",
+        adaptiveBannerAd: String = "",
+        rewardInterstitialAd: String = "",
+        rewardAd: String = "",
+        nativeAd: String = ""
     ) {
 
         MobileAds.setRequestConfiguration(
             RequestConfiguration.Builder()
-                .setTestDeviceIds(listOf(ConsentManager.TEST_DEVICE_HASHED_ID))
+                .setTestDeviceIds(testDeviceIds)
                 .build()
         )
+        AdsConfig.BANNER_ID = bannerId
+        AdsConfig.APP_OPEN_ID = appOpenAd
+        AdsConfig.IS_DEBUG = isDebug
+        AdsConfig.INTERSTITIAL_AD_ID = interstitialAd
+        AdsConfig.ADAPTIVE_BANNER_ID = adaptiveBannerAd
+        AdsConfig.REWARD_INTERSTITIAL_AD_ID = rewardInterstitialAd
+        AdsConfig.REWARDED_AD_ID = rewardAd
+        AdsConfig.NATIVE_AD_ID = nativeAd
 
         MobileAds.initialize(application) {
             // Callback invoked when initialization is complete.

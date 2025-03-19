@@ -12,7 +12,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.appopen.AppOpenAd
-import com.sdkads.utils.AdsConfig
+import com.sdkads.core.AdsConfig
 import java.util.Date
 
 /**
@@ -184,7 +184,8 @@ class AppOpenAdHelper(private val application: Application) : DefaultLifecycleOb
         /**
          * The ad unit ID for loading App Open Ads, retrieved from build configuration.
          */
-        private const val AD_UNIT_ID = AdsConfig.APP_OPEN_ID
+//        private const val AD_UNIT_ID = AdsConfig.APP_OPEN_ID
+        var AD_UNIT_ID = AdsConfig.APP_OPEN_ID
     }
 }
 

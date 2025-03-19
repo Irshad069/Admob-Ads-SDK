@@ -18,7 +18,7 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.sdkads.R
-import com.sdkads.utils.AdsConfig
+import com.sdkads.core.AdsConfig
 
 /**
  * Created by Irshad khan

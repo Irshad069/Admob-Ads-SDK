@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-//    id("maven-publish")
+    id("maven-publish")
 //    id("com.vanniktech.maven.publish") version "0.28.0"
 //    id("com.gradleup.nmcp") version "0.0.7"
 }
@@ -126,6 +126,15 @@ dependencies {
     implementation(libs.user.messaging.platform)
     // for lifecycle process
     implementation(libs.androidx.lifecycle.process)
+}
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
 }
 //publishing {
 //    publications {

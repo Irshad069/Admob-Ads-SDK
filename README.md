@@ -4,6 +4,11 @@ This app demonstrates how to integrate and use the SDK to show ads and handle us
 
 ---
 
+## Add Library
+implementation 'com.github.Irshad069:Admob-Ads-SDK:1.0.2'
+
+## OR
+
 ## 1. Add SDK Dependency to Your App
 
 Add the following SDK dependency to your `build.gradle` file:

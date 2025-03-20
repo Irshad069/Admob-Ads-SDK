@@ -35,7 +35,7 @@ dependencies {
 And also in setting.gradle file Add this
 include(":sdkads")
 ```
-
+## common for both options
 ## 1. Ad ID Configuration Using Build Types
 
 We configure Ad IDs for different build types in the build.gradle file

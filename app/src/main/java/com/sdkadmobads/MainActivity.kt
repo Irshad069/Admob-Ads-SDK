@@ -21,9 +21,4 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        // Register activity for App Open Ads
-        AdSdkInitializer.registerActivity(this)
-    }
 }

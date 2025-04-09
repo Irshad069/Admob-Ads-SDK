@@ -18,7 +18,7 @@ class RewardFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRewardBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -38,7 +38,6 @@ class RewardFragment : Fragment() {
                         Log.d("AdDemo", "User earned $rewardAmount $rewardType.")
                     }
                 )
-
             }
         }
 

@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">SDK Admob Ads</string>
     <string name="show_banner_ad">Show Banner Ad</string>
     <string name="show_adaptive_banner_ad">Show Adaptive Banner Ad</string>
@@ -7,6 +8,8 @@
     <string name="show_reward_ad">Show Reward Ad</string>
     <string name="show_reward_interstitial_ad">Show Reward Interstitial Ad</string>
     <string name="show_native_ad">Show Native Ad</string>
+    <string name="show_recycler_native_ad">Show Recycler Native Ad</string>
+    <string name="show_collapsible_banner">Show Collapsible Banner</string>
 
     <string name="home">Home</string>
     <string name="showing_banner_ad">Showing Banner Ad</string>
@@ -16,5 +19,7 @@
     <string name="showing_reward_ad">Showing Reward Ad</string>
     <string name="showing_reward_interstitial_ad">Showing Reward Interstitial Ad</string>
     <string name="showing_native_ad">Showing Native Ad</string>
+    <string name="showing_recyclerview_ad">Showing Recyclerview Ad</string>
+    <string name="showing_collapsible_banner">Showing Collapsible Banner</string>
 
 </resources>

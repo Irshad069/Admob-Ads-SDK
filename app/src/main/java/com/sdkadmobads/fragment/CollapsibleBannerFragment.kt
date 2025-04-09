@@ -1,35 +1,35 @@
 package com.sdkadmobads.fragment
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.sdkadmobads.R
-import com.sdkadmobads.databinding.FragmentBannerBinding
+import com.sdkadmobads.databinding.FragmentCollapsibleBannerBinding
 
-class BannerFragment : Fragment() {
+class CollapsibleBannerFragment : Fragment() {
 
-    private var _binding: FragmentBannerBinding? = null
+    private var _binding: FragmentCollapsibleBannerBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBannerBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentCollapsibleBannerBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.toolBar.tvTitle.text = getString(R.string.showing_banner_ad)
-
+        binding.toolBar.tvTitle.text = getString(R.string.showing_collapsible_banner)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

@@ -1,6 +1,7 @@
 package com.sdkads.interstitial
 
 import android.app.Activity
+import android.content.Context
 import android.util.Log
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
@@ -34,9 +35,9 @@ object InterstitialHelper {
      * Loads an interstitial ad using the configured ad unit ID.
      * This method ensures that only one ad is loaded at a time.
      *
-     * @param activity The activity context for loading the ad.
+     * @param context The context for loading the ad.
      */
-    private fun loadAd(activity: Activity) {
+    private fun loadAd(context: Context) {
         val adUnitId = AdsConfig.INTERSTITIAL_AD_ID
         if (adUnitId.isEmpty()) {
             Log.e(TAG, "Interstitial Ad Unit ID is not configured.")
@@ -52,7 +53,8 @@ object InterstitialHelper {
 
         // Load the interstitial ad with a callback for success or failure.
         InterstitialAd.load(
-            activity,
+
+            context,
             adUnitId,
             adRequest,
             object : InterstitialAdLoadCallback() {
@@ -68,6 +70,10 @@ object InterstitialHelper {
                 }
             }
         )
+    }
+
+    fun initLoadAd(context: Context) {
+        loadAd(context)
     }
 
     /**

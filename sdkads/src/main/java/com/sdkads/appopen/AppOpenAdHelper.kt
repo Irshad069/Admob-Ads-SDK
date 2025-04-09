@@ -2,11 +2,12 @@ package com.sdkads.appopen
 
 import android.app.Activity
 import android.app.Application
-import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.google.android.gms.ads.AdActivity
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -21,19 +22,18 @@ import java.util.Date
  */
 
 /**
- * AppOpenAdHelper is a utility class for managing App Open Ads in an Android application.
+ * AppOpenAdHelper is a helper class designed to handle loading, showing, and managing the lifecycle of App Open Ads.
+ * It uses the Google Mobile Ads SDK to load and display full-screen app open ads when the app comes to the foreground.
  *
- * This class handles:
- * - Loading App Open Ads.
- * - Displaying the ads when the app moves to the foreground.
- * - Managing ad lifecycle events such as loading, showing, dismissing, and expiration.
+ * The class observes the app lifecycle and shows the app open ad when the app is resumed, as long as the ad is available and not already being shown.
  *
- * It uses Google's Mobile Ads SDK to handle App Open Ads and integrates lifecycle observation
- * to automatically load and show ads at appropriate times.
- *
- * @param application The application instance to register lifecycle observers and manage ads.
+ * @param application The application instance used to register lifecycle observers.
+ * @param excludedActivities List of activity names that should not trigger the display of an app open ad.
  */
-class AppOpenAdHelper(private val application: Application) : DefaultLifecycleObserver {
+class AppOpenAdHelper(
+    private val application: Application,
+    private val excludedActivities: List<String> = emptyList()
+) : DefaultLifecycleObserver, Application.ActivityLifecycleCallbacks {
 
     /**
      * The currently loaded App Open Ad.
@@ -63,129 +63,157 @@ class AppOpenAdHelper(private val application: Application) : DefaultLifecycleOb
     init {
         // Register as a lifecycle observer to detect when the app enters the foreground.
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
+        application.registerActivityLifecycleCallbacks(this)
     }
 
     /**
-     * Loads an App Open Ad if no ad is currently being loaded or available.
+     * Called when the app enters the foreground (app is visible to the user).
+     * This method attempts to show the app open ad if it's available and the current activity is not excluded.
      *
-     * @param context The context to use for loading the ad.
+     * @param owner The LifecycleOwner triggering the callback.
      */
-    fun loadAd(context: Context) {
+    override fun onStart(owner: LifecycleOwner) {
+        currentActivity?.let {
+            if (!excludedActivities.contains(it::class.java.name)) {
+                showAdIfAvailable(it)
+            }
+        }
+    }
+
+    /**
+     * Loads an App Open Ad from the Google Ads SDK.
+     * If an ad is already being loaded or is already available, it does nothing.
+     *
+     * @param context The context (activity) used to load the ad.
+     */
+    fun loadAd(context: Activity) {
         if (isLoadingAd || isAdAvailable()) return
 
         isLoadingAd = true
         val request = AdRequest.Builder().build()
+
+        // Load the App Open Ad with the specified ad unit ID.
         AppOpenAd.load(
             context,
-            AD_UNIT_ID,
+            AdsConfig.APP_OPEN_ID,
             request,
             object : AppOpenAd.AppOpenAdLoadCallback() {
                 override fun onAdLoaded(ad: AppOpenAd) {
                     appOpenAd = ad
                     isLoadingAd = false
                     loadTime = Date().time
-                    Log.d(LOG_TAG, "Ad Loaded")
+                    Log.d(TAG, "App Open Ad loaded.")
                 }
 
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
                     isLoadingAd = false
-                    Log.d(LOG_TAG, "Ad Failed to Load: ${loadAdError.message}")
+                    Log.e(TAG, "Failed to load App Open Ad: ${loadAdError.message}")
                 }
             }
         )
     }
 
     /**
-     * Displays the ad if available and not currently showing.
+     * Checks if an App Open Ad is available to be shown.
+     * An ad is considered available if it was loaded within the last 4 hours.
      *
-     * @param activity The activity in which the ad will be shown.
-     * @param onAdComplete A callback that will be executed after the ad is dismissed or fails to show.
-     */
-    fun showAdIfAvailable(activity: Activity, onAdComplete: () -> Unit = {}) {
-        if (isShowingAd || !isAdAvailable()) {
-            Log.d(LOG_TAG, "Ad not ready or already showing")
-            onAdComplete()
-            return
-        }
-
-        appOpenAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
-            override fun onAdDismissedFullScreenContent() {
-                appOpenAd = null
-                isShowingAd = false
-                Log.d(LOG_TAG, "Ad Dismissed")
-                onAdComplete()
-                loadAd(activity)
-            }
-
-            override fun onAdFailedToShowFullScreenContent(adError: AdError) {
-                appOpenAd = null
-                isShowingAd = false
-                Log.d(LOG_TAG, "Ad Failed to Show: ${adError.message}")
-                onAdComplete()
-                loadAd(activity)
-            }
-
-            override fun onAdShowedFullScreenContent() {
-                isShowingAd = true
-                Log.d(LOG_TAG, "Ad Showing")
-            }
-        }
-
-        appOpenAd?.show(activity)
-    }
-
-    /**
-     * Checks whether an ad is available and not expired.
-     *
-     * @return True if an ad is available and valid, false otherwise.
+     * @return True if the ad is available, false otherwise.
      */
     private fun isAdAvailable(): Boolean {
         return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4)
     }
 
     /**
-     * Checks if the ad's load time is within a specified number of hours.
+     * Checks if the ad was loaded within the last N hours.
      *
-     * @param hours The number of hours to validate.
-     * @return True if the ad's load time is less than the specified hours ago, false otherwise.
+     * @param numHours The number of hours to check against.
+     * @return True if the ad was loaded within the specified time frame.
      */
-    private fun wasLoadTimeLessThanNHoursAgo(hours: Int): Boolean {
-        val currentTime = Date().time
-        return (currentTime - loadTime) < hours * 60 * 60 * 1000
+    private fun wasLoadTimeLessThanNHoursAgo(numHours: Int): Boolean {
+        val dateDifference = Date().time - loadTime
+        val numMilliSecondsPerHour: Long = 3600000
+        return dateDifference < numMilliSecondsPerHour * numHours
     }
 
     /**
-     * Lifecycle callback invoked when the app enters the foreground.
+     * Tries to show the App Open Ad if available.
+     * If an ad is not available or is currently being shown, it loads a new ad.
      *
-     * @param owner The LifecycleOwner triggering the callback.
+     * @param activity The current activity in which the ad will be shown.
      */
-    override fun onStart(owner: LifecycleOwner) {
-        currentActivity?.let { showAdIfAvailable(it) }
-    }
+    fun showAdIfAvailable(activity: Activity) {
+        Log.d(TAG, "Trying to show App Open Ad in ${activity::class.java.simpleName}")
+        Log.e(TAG, "AdActivity name: ${AdActivity::class.java.canonicalName}" )
+        Log.e(TAG, "current activity name: ${currentActivity?.javaClass?.canonicalName}" )
 
-    /**
-     * Registers the current activity for showing and loading ads.
-     *
-     * @param activity The activity to register.
-     */
-    fun registerActivity(activity: Activity) {
-        currentActivity = activity
-        if (!isAdAvailable()) {
-            loadAd(activity)
+
+        // Avoid showing ads if the current activity is the ad activity (which is a special activity for displaying ads).
+        if (AdActivity::class.java.canonicalName == currentActivity?.javaClass?.canonicalName) {
+            Log.e(TAG, "Since this is ad activity then we cannot show app open it")
+            return
         }
+
+        // If ad is already being shown or unavailable, load a new ad and return.
+        if (isShowingAd || !isAdAvailable() || isExcludedActivity()) {
+            loadAd(activity)
+            return
+        }
+
+        // Show the loaded ad.
+        isShowingAd = true
+        appOpenAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+            override fun onAdDismissedFullScreenContent() {
+                appOpenAd = null
+                isShowingAd = false
+                Log.d(TAG, "Ad dismissed.")
+                loadAd(activity)
+            }
+
+            override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+                appOpenAd = null
+                isShowingAd = false
+                Log.e(TAG, "Ad failed to show: ${adError.message}")
+                loadAd(activity)
+            }
+
+            override fun onAdShowedFullScreenContent() {
+                Log.d(TAG, "Ad showed.")
+            }
+        }
+        appOpenAd?.show(activity)
     }
+
+    /**
+     * Checks if the current activity is in the excluded activities list.
+     * This helps to prevent showing ads in certain activities, such as splash screens or login screens.
+     *
+     * @return True if the current activity is excluded from showing ads.
+     */
+    private fun isExcludedActivity(): Boolean {
+        return excludedActivities.any { it == currentActivity?.javaClass?.canonicalName }
+    }
+
+    // Activity lifecycle methods to track the current activity.
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
+
+    override fun onActivityStarted(activity: Activity) {
+        if (!isAdAvailable() && !isLoadingAd) {
+            currentActivity = activity
+        }
+        Log.e(TAG, "on activity start current activity named: ${currentActivity?.javaClass?.canonicalName} ")
+    }
+
+    override fun onActivityResumed(activity: Activity) {
+        currentActivity = activity
+        Log.e(TAG, "on resumed current activity named: ${currentActivity?.javaClass?.canonicalName} ")
+    }
+
+    override fun onActivityPaused(activity: Activity) {}
+    override fun onActivityStopped(activity: Activity) {}
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
+    override fun onActivityDestroyed(activity: Activity) {}
 
     companion object {
-        /**
-         * Tag for logging messages.
-         */
-        private const val LOG_TAG = "AppOpenAdHelper"
-
-        /**
-         * The ad unit ID for loading App Open Ads, retrieved from build configuration.
-         */
-//        private const val AD_UNIT_ID = AdsConfig.APP_OPEN_ID
-        var AD_UNIT_ID = AdsConfig.APP_OPEN_ID
+        private const val TAG = "AppOpenAdHelper"
     }
 }
-

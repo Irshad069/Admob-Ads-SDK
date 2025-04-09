@@ -27,6 +27,12 @@
         <action
             android:id="@+id/action_homeFragment_to_nativeFragment"
             app:destination="@id/nativeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_recyclerViewNativeFragment"
+            app:destination="@id/recyclerViewNativeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_collapsibleBannerFragment"
+            app:destination="@id/collapsibleBannerFragment" />
 
     </fragment>
     <fragment
@@ -57,5 +63,14 @@
         android:name="com.sdkadmobads.fragment.NativeFragment"
         android:label="fragment_native"
         tools:layout="@layout/fragment_native" />
+    <fragment
+        android:id="@+id/recyclerViewNativeFragment"
+        android:name="com.sdkadmobads.fragment.RecyclerViewNativeFragment"
+        android:label="fragment_recycler_view_native"
+        tools:layout="@layout/fragment_recycler_view_native" />
+    <fragment
+        android:id="@+id/collapsibleBannerFragment"
+        android:name="com.sdkadmobads.fragment.CollapsibleBannerFragment"
+        android:label="CollapsibleBannerFragment" />
 
 </navigation>

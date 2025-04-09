@@ -47,10 +47,16 @@ object AdsConfig {
     var NATIVE_AD_ID: String = ""
 
     /**
-     * The AdMob ad unit ID for native ads.
+     * The AdMob ad unit ID for app open.
      * Defaults to test ad unit ID in debug builds.
      */
     var APP_OPEN_ID: String = ""
+
+    /**
+     * The AdMob ad unit ID for collapsible banner.
+     * Defaults to test ad unit ID in debug builds.
+     */
+    var COLLAPSIBLE_BANNER_ID: String = ""
 
     /**
      * Is Debug check for showing consent
@@ -58,7 +64,12 @@ object AdsConfig {
     var IS_DEBUG:Boolean = false
 
     /**
-     * default value for adType
+     * default value for adType large
      */
     const val LARGE: String = "large"
+
+    /**
+     * default value for adType medium
+     */
+    const val MEDIUM: String = "medium"
 }

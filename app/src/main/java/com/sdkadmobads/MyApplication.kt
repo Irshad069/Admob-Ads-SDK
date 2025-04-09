@@ -1,6 +1,7 @@
 package com.sdkadmobads
 
 import android.app.Application
+import com.sdkadmobads.fragment.InterstitialFragment
 import com.sdkads.AdSdkInitializer
 
 class MyApplication : Application() {
@@ -18,7 +19,11 @@ class MyApplication : Application() {
             adaptiveBannerAd = BuildConfig.ADAPTIVE_BANNER_ID,
             rewardInterstitialAd = BuildConfig.REWARD_INTERSTITIAL_AD_ID,
             rewardAd = BuildConfig.REWARDED_AD_ID,
-            nativeAd = BuildConfig.NATIVE_AD_ID
+            nativeAd = BuildConfig.NATIVE_AD_ID,
+            collapsibleBannerAd = BuildConfig.COLLAPSIBLE_BANNER_ID,
+            excludedActivities = listOf(
+//                MainActivity::class.java.canonicalName
+            ),
         )
 
     }

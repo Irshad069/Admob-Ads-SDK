@@ -70,10 +70,14 @@ class CustomNativeAdView @JvmOverloads constructor(
     /**
      * Loads a native ad using AdMob's AdLoader and binds it to the appropriate layout.
      */
-    private fun loadNativeAd() {
+    fun loadNativeAd() {
         // Determines the appropriate layout based on the view type.
         val adLayoutRes =
-            if (viewType == AdsConfig.LARGE) R.layout.native_ad_view else R.layout.native_medium_ad_view
+            when(viewType){
+                AdsConfig.LARGE -> R.layout.native_ad_view
+                AdsConfig.MEDIUM -> R.layout.native_medium_ad_view
+                else -> R.layout.native_ad_view
+            }
 
         val builder = AdLoader.Builder(context, AdsConfig.NATIVE_AD_ID)
 

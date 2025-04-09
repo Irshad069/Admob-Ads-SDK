@@ -38,7 +38,7 @@ class BannerView @JvmOverloads constructor(
      * and the AdView is initialized.
      */
     private fun setupBanner() {
-            initializeAdView()
+        initializeAdView()
     }
 
     /**

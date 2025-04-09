@@ -2,8 +2,6 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     id("maven-publish")
-//    id("com.vanniktech.maven.publish") version "0.28.0"
-//    id("com.gradleup.nmcp") version "0.0.7"
 }
 
 android {
@@ -51,6 +49,8 @@ dependencies {
     implementation(libs.user.messaging.platform)
     // for lifecycle process
     implementation(libs.androidx.lifecycle.process)
+    // recycler view
+    implementation(libs.androidx.recyclerview)
 }
 publishing {
     publications {

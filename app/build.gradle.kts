@@ -55,6 +55,11 @@ android {
                 "APP_OPEN_ID",
                 "\"ca-app-pub-3940256099942544/9257395921\""
             ) // Test Id in debug builds
+            buildConfigField(
+                "String",
+                "COLLAPSIBLE_BANNER_ID",
+                "\"ca-app-pub-3940256099942544/2014213617\""
+            ) // Test Id in debug builds
         }
         release {
             isMinifyEnabled = false
@@ -93,6 +98,11 @@ android {
                 "APP_OPEN_ID",
                 "\"your-production-app-open-id\""
             ) //Add original Id
+            buildConfigField(
+                "String",
+                "COLLAPSIBLE_BANNER_ID",
+                "\"your-production-collapsible_banner-id\""
+            ) //Add original Id
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -117,7 +127,6 @@ android {
 dependencies {
 
     implementation(project(":sdkads"))
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -130,6 +139,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-//    implementation ("com.github.Irshad069:Admob-Ads-SDK:1.0.1")
+//    implementation ("com.github.Irshad069:Admob-Ads-SDK:1.0.2")
 
 }
